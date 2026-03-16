@@ -17,7 +17,7 @@ SECRET_KEY = "hrms_secret_key_2024"
 #   Leave as None to run locally with SQLite
 # ════════════════════════════════════════════════════════════════════════════
 
-DATABASE_URL = postgresql://postgres:[YOUR-PASSWORD]@db.yjuznwcosfwjnizwtirk.supabase.co:5432/postgres
+DATABASE_URL = postgresql://postgres:[chirugowda@009]@db.yjuznwcosfwjnizwtirk.supabase.co:5432/postgres
 # ─── AUTO DETECT: SQLite (local) vs PostgreSQL (Supabase) ───────────────────
 
 _PG_URL  = DATABASE_URL or os.environ.get("DATABASE_URL", "")
