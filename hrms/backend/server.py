@@ -9,7 +9,7 @@ from functools import wraps
 app = Flask(__name__, static_folder='../frontend', static_url_path='')
 
 SECRET_KEY = "hrms_secret_key_2024"
-DB_PATH = os.path.join(os.path.dirname(__file__), "hrms.db")
+DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "hrms.db")
 
 # ─── DB INIT ────────────────────────────────────────────────────────────────
 
