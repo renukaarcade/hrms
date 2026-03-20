@@ -17,7 +17,8 @@ SECRET_KEY = "hrms_secret_key_2024"
 #   Leave as None to run locally with SQLite
 # ════════════════════════════════════════════════════════════════════════════
 
-DATABASE_URL = None
+DATABASE_URL = None   # <── PASTE HERE  e.g. "postgresql://postgres:pass@db.xxx.supabase.co:5432/postgres"
+
 # ─── AUTO DETECT: SQLite (local) vs PostgreSQL (Supabase) ───────────────────
 
 _PG_URL  = DATABASE_URL or os.environ.get("DATABASE_URL", "")
@@ -634,10 +635,19 @@ def serve(path):
         return send_from_directory(app.static_folder, path)
     return send_from_directory(app.static_folder, "index.html")
 
-# ─── START ───────────────────────────────────────────────────────────────────
+# ─── INIT DB ON STARTUP ─────────────────────────────────────────────────────
+# Runs whether started via "python server.py" OR "gunicorn server:app"
+# Creates all tables and seeds default admin account
+
+try:
+    init_db()
+    print("✓ Database ready")
+except Exception as e:
+    print(f"⚠ DB init warning: {e}")
+
+# ─── LOCAL START ─────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
-    init_db()
     print("=" * 50)
     print("  HRMS  →  http://localhost:5000")
     print("  Login: admin / admin123")
